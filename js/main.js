@@ -39,7 +39,6 @@
         <div class="modal-image-box">
           <img id="modal-preview-img" src="" alt="" />
           <p class="modal-zoom-caption" id="modal-zoom-caption"></p>
-          <span class="modal-file-tag" id="modal-file-tag"></span>
         </div>
         <div class="modal-details" id="modal-details">
           <div>
@@ -110,7 +109,6 @@
     const modalContainer = backdrop.querySelector("#modal-container");
     const previewImg = backdrop.querySelector("#modal-preview-img");
     const zoomCaption = backdrop.querySelector("#modal-zoom-caption");
-    const fileTag = backdrop.querySelector("#modal-file-tag");
     const badgeRow = backdrop.querySelector("#modal-badge-row");
     const titleEl = backdrop.querySelector("#modal-title");
     const variantActiveEl = backdrop.querySelector("#modal-variant-active");
@@ -162,7 +160,6 @@
 
       previewImg.src = imgSrc;
       previewImg.alt = `${titleEl.textContent} - ${variantLabel}`;
-      fileTag.textContent = imgSrc;
       variantActiveEl.textContent = variantLabel;
       descEl.textContent = descText;
 
@@ -315,23 +312,34 @@
             <span class="price-badge-main">${product.badgePrice}</span>
             ${product.badgeSub ? `<span class="price-badge-sub">${product.badgeSub}</span>` : ""}
           </div>
-          ${product.secondaryBadge ? `<div class="price-badge-extra">${product.secondaryBadge}</div>` : ""}
         </div>
+        ${product.secondaryBadge ? `
+          <div class="price-badge-extra">
+            <svg class="price-badge-starburst" viewBox="0 0 100 100" aria-hidden="true">
+              <polygon fill="#0f0f12" stroke="#ffffff" stroke-width="3" stroke-linejoin="miter" points="50.0,2.0 57.6,16.9 70.8,6.8 71.2,23.4 87.5,20.1 80.6,35.2 96.8,39.3 84.0,50.0 96.8,60.7 80.6,64.8 87.5,79.9 71.2,76.6 70.8,93.2 57.6,83.1 50.0,98.0 42.4,83.1 29.2,93.2 28.8,76.6 12.5,79.9 19.4,64.8 3.2,60.7 16.0,50.0 3.2,39.3 19.4,35.2 12.5,20.1 28.8,23.4 29.2,6.8 42.4,16.9" />
+            </svg>
+            <span class="price-badge-extra-text">${product.secondaryBadge}</span>
+          </div>
+        ` : ""}
       `;
 
       card.innerHTML = `
-        ${labelHtml}
         ${badgeHtml}
         <div class="card-corner-stars">${createCornerStarsSvg()}</div>
         <button type="button" class="product-image-btn" aria-label="Buka detail ${product.name}">
           <img src="${product.mainImage}" alt="${product.name}" />
         </button>
-        <div class="variant-strip" aria-label="Pilih varian ${product.name}"></div>
+        ${labelHtml}
+        <div class="card-variant-action">
+          <button type="button" class="view-variants-btn">
+            Lihat Varian (${product.variants.length}) 🔍
+          </button>
+        </div>
       `;
 
       const imgBtn = card.querySelector(".product-image-btn");
       const imgEl = imgBtn.querySelector("img");
-      const variantStrip = card.querySelector(".variant-strip");
+      const viewVariantsBtn = card.querySelector(".view-variants-btn");
 
       function updateCardVariant(variantId) {
         selectedVariantsByProduct[product.id] = variantId;
@@ -345,37 +353,19 @@
             imgEl.alt = `${product.name} - ${found.name}`;
           }
         }
-        variantStrip.querySelectorAll(".variant-chip").forEach((chip) => {
-          chip.classList.toggle("is-selected", chip.dataset.variantId === variantId);
-        });
       }
 
-      const allChip = document.createElement("button");
-      allChip.type = "button";
-      allChip.className = "variant-chip is-selected";
-      allChip.dataset.variantId = "all";
-      allChip.textContent = "Semua";
-      allChip.addEventListener("click", () => updateCardVariant("all"));
-      variantStrip.appendChild(allChip);
-
-      product.variants.forEach((variant) => {
-        const chip = document.createElement("button");
-        chip.type = "button";
-        chip.className = "variant-chip";
-        chip.dataset.variantId = variant.id;
-        chip.innerHTML = `<span class="variant-dot" style="background:${variant.color}"></span><span>${variant.shortLabel} · ${variant.name}</span>`;
-        chip.addEventListener("click", () => updateCardVariant(variant.id));
-        variantStrip.appendChild(chip);
-      });
-
-      imgBtn.addEventListener("click", () => {
+      function openCatalogueDetail() {
         openImageModal({
           product,
           activeVariantId: selectedVariantsByProduct[product.id],
           showCatalogueLink: false,
           onVariantSelect: (chosenVariantId) => updateCardVariant(chosenVariantId)
         });
-      });
+      }
+
+      imgBtn.addEventListener("click", openCatalogueDetail);
+      viewVariantsBtn.addEventListener("click", openCatalogueDetail);
 
       grid.appendChild(card);
     });
