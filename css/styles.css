@@ -565,14 +565,15 @@ a {
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  background: #0f0f12;
+  background: #4169e1;
   color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+  border: none;
+  box-shadow: none;
   line-height: 1.05;
 }
 
@@ -589,16 +590,17 @@ a {
 
 .price-badge-extra {
   position: absolute;
-  top: -18px;
-  left: -14px;
+  top: -22px;
+  left: -18px;
   z-index: 4;
-  width: 74px;
-  height: 74px;
+  width: 96px;
+  height: 96px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.22));
+  filter: drop-shadow(0 7px 12px rgba(236, 64, 122, 0.34));
+  transform: rotate(-7deg);
 }
 
 .price-badge-starburst {
@@ -608,14 +610,22 @@ a {
   height: 100%;
 }
 
+.price-badge-starburst polygon {
+  fill: #ec407a;
+  stroke: #fff176;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+
 .price-badge-extra-text {
   position: relative;
   z-index: 1;
-  max-width: 48px;
+  max-width: 62px;
   color: #ffffff;
-  font-size: 0.64rem;
-  font-weight: 800;
-  line-height: 1.05;
+  font-size: 0.78rem;
+  font-weight: 900;
+  line-height: 1.12;
+  text-shadow: 0 1px 2px rgba(86, 14, 47, 0.28);
 }
 
 .card-corner-stars {

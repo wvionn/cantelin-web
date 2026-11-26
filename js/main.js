@@ -303,6 +303,9 @@
       const card = document.createElement("article");
       card.className = "product-card";
       card.dataset.productId = product.id;
+      if (product.secondaryBadge) {
+        card.classList.add("product-card--highlight");
+      }
 
       const labelHtml = `
         <div class="product-label-box">
@@ -335,11 +338,13 @@
           <img src="${product.mainImage}" alt="${product.name}" />
         </button>
         ${labelHtml}
-        <div class="card-variant-action">
-          <button type="button" class="view-variants-btn">
-            Lihat Varian (${product.variants.length}) 🔍
-          </button>
-        </div>
+        ${product.variants.length > 0 ? `
+          <div class="card-variant-action">
+            <button type="button" class="view-variants-btn">
+              Lihat Varian (${product.variants.length}) 🔍
+            </button>
+          </div>
+        ` : ""}
       `;
 
       const imgBtn = card.querySelector(".product-image-btn");
@@ -370,7 +375,9 @@
       }
 
       imgBtn.addEventListener("click", openCatalogueDetail);
-      viewVariantsBtn.addEventListener("click", openCatalogueDetail);
+      if (viewVariantsBtn) {
+        viewVariantsBtn.addEventListener("click", openCatalogueDetail);
+      }
 
       grid.appendChild(card);
     });
