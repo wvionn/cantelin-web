@@ -338,13 +338,13 @@
           <img src="${product.mainImage}" alt="${product.name}" />
         </button>
         ${labelHtml}
-        ${product.variants.length > 0 ? `
-          <div class="card-variant-action">
+        <div class="card-variant-action">
+          ${product.variants.length > 0 ? `
             <button type="button" class="view-variants-btn">
               Lihat Varian (${product.variants.length}) 🔍
             </button>
-          </div>
-        ` : ""}
+          ` : ""}
+        </div>
       `;
 
       const imgBtn = card.querySelector(".product-image-btn");

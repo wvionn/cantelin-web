@@ -513,7 +513,7 @@ a {
   background: var(--card-grey);
   border: 3px dashed #18181b;
   border-radius: 18px;
-  padding: 0 0 14px;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -528,12 +528,13 @@ a {
 
 .product-label-box {
   width: 100%;
-  min-height: 60px;
-  padding: 10px 14px 4px;
+  min-height: 48px;
+  padding: 5px 12px 2px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  background: #ffffff;
 }
 
 .product-label-title {
@@ -549,6 +550,21 @@ a {
   font-size: 0.8rem;
   font-weight: 700;
   color: #27272a;
+}
+
+.product-card[data-product-id="Bundle Lengkap"] .product-label-box,
+.product-card[data-product-id="stiker"] .product-label-box {
+  height: 88px;
+  min-height: 88px;
+  justify-content: center;
+  padding: 17px 12px 2px;
+}
+
+.product-card[data-product-id="keychain"] .card-variant-action,
+.product-card[data-product-id="pin"] .card-variant-action {
+  align-items: center;
+  padding: 0 12px 10px;
+  transform: translateY(-5px);
 }
 
 .price-badge-stack {
@@ -667,10 +683,13 @@ a {
 
 .card-variant-action {
   width: 100%;
-  padding: 8px 14px 2px;
+  min-height: 40px;
+  padding: 2px 12px 4px;
   display: flex;
   justify-content: center;
+  align-items: center;
   z-index: 3;
+  background: #ffffff;
 }
 
 .view-variants-btn {
@@ -678,22 +697,22 @@ a {
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 7px 18px;
+  padding: 6px 16px;
   border-radius: 999px;
   border: 2px solid #18181b;
-  background: var(--white);
+  background: #ffe047;
   font-size: 0.82rem;
   font-weight: 800;
-  color: var(--ink);
+  color: #18181b;
   cursor: pointer;
   box-shadow: 0 3px 0 rgba(17, 17, 17, 0.1);
   transition: background-color 0.16s ease, color 0.16s ease, border-color 0.16s ease, transform 0.15s ease;
 }
 
 .view-variants-btn:hover {
-  background: var(--pink);
-  border-color: var(--pink-dark);
-  color: #ffffff;
+  background: #ffd000;
+  border-color: #18181b;
+  color: #18181b;
   transform: translateY(-1px);
 }
 

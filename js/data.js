@@ -84,8 +84,8 @@ const CATALOGUE_PRODUCTS = [
     ]
   },
   {
-    id: "keychain",
-    name: "Keychain",
+    id: "keychain keren",
+    name: "Keychain Keren",
     subtitle: "",
     badgePrice: "6k",
     badgeSub: "Get 1",
@@ -109,8 +109,8 @@ const CATALOGUE_PRODUCTS = [
     ]
   },
   {
-    id: "pin",
-    name: "Pin",
+    id: "pin kece",
+    name: "Pin Kece",
     subtitle: "",
     badgePrice: "6k",
     badgeSub: "Get 1",
@@ -129,8 +129,8 @@ const CATALOGUE_PRODUCTS = [
     ]
   },
   {
-    id: "stiker",
-    name: "Stiker",
+    id: "sticker keren",
+    name: "Sticker Keren",
     subtitle: "",
     badgePrice: "6k",
     badgeSub: "Get 2",
