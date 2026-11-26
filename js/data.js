@@ -6,7 +6,7 @@
 
 const CANTELIN_CONFIG = {
   // Ganti link DM Instagram / WhatsApp tujuan tombol "Chat kami via DM ya!" & "Order Now":
-  dmLink: "https://ig.me/m/cantelin.id"
+  dmLink: "https://www.instagram.com/cantel__in/"
 };
 
 const CATALOGUE_PRODUCTS = [
