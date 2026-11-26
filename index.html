@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cantelin — Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body data-page="home">
   <!-- Decorative Floating Stars -->
   <div class="bg-decor" aria-hidden="true">
     <svg class="decor-star decor-star--tl" viewBox="0 0 100 100">
       <defs>
         <linearGradient id="starGradA" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#ffe047"/>
-          <stop offset="55%" stop-color="#ff64a8"/>
-          <stop offset="100%" stop-color="#a586ff"/>
+          <stop offset="0%" stop-color="#ffe047" />
+          <stop offset="55%" stop-color="#ff64a8" />
+          <stop offset="100%" stop-color="#a586ff" />
         </linearGradient>
       </defs>
-      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--tl-sm" viewBox="0 0 100 100">
       <defs>
         <linearGradient id="starGradB" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#a586ff"/>
-          <stop offset="100%" stop-color="#ff79b0"/>
+          <stop offset="0%" stop-color="#a586ff" />
+          <stop offset="100%" stop-color="#ff79b0" />
         </linearGradient>
       </defs>
-      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--tr-sm" viewBox="0 0 100 100">
-      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--tr" viewBox="0 0 100 100">
-      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--mr" viewBox="0 0 100 100">
-      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--bl" viewBox="0 0 100 100">
-      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--bl-sm" viewBox="0 0 100 100">
-      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--br" viewBox="0 0 100 100">
-      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
     <svg class="decor-star decor-star--br-sm" viewBox="0 0 100 100">
-      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+      <path fill="url(#starGradB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z" />
     </svg>
   </div>
 
@@ -58,7 +62,8 @@
     <header class="site-header">
       <a href="index.html" class="brand-logo" aria-label="Cantelin Home">
         <svg class="brand-star" viewBox="0 0 64 64" aria-hidden="true">
-          <path fill="#f03d7e" d="M32 5l8.2 16.8L59 24.5 45.4 37.7l3.2 18.8L32 47.6l-16.6 8.9 3.2-18.8L5 24.5l18.8-2.7z"/>
+          <path fill="#f03d7e"
+            d="M32 5l8.2 16.8L59 24.5 45.4 37.7l3.2 18.8L32 47.6l-16.6 8.9 3.2-18.8L5 24.5l18.8-2.7z" />
         </svg>
         <span class="brand-wordmark">Cantelin</span>
       </a>
@@ -81,19 +86,19 @@
       </p>
 
       <section class="carousel-card" aria-label="Produk Unggulan Cantelin">
-        <button type="button" class="carousel-arrow" id="carousel-prev" aria-label="Produk sebelumnya">
+        <button type="button" class="carousel-arrow carousel-arrow--prev" id="carousel-prev" aria-label="Produk sebelumnya">
           &#10094;
         </button>
 
         <div class="carousel-stage">
-          <button type="button" class="carousel-image-trigger" id="carousel-trigger" aria-label="Klik gambar untuk membuka detail">
-            <img id="carousel-image" class="carousel-image" src="assets/images/home-slide-1.png" alt="Cardholder Cantelin" />
-            <span class="click-hint">Klik gambar untuk detail &amp; varian 🔍</span>
-          </button>
-          <h2 id="carousel-caption" class="carousel-caption">Cardholder Cantelin</h2>
+            <button type="button" class="carousel-image-trigger" id="carousel-trigger"
+              aria-label="Klik gambar untuk memperbesar">
+              <img id="carousel-image" class="carousel-image" src="assets/images/home-slide-1.png"
+                alt="Cardholder Cantelin" />
+            </button>
         </div>
 
-        <button type="button" class="carousel-arrow" id="carousel-next" aria-label="Produk berikutnya">
+        <button type="button" class="carousel-arrow carousel-arrow--next" id="carousel-next" aria-label="Produk berikutnya">
           &#10095;
         </button>
       </section>
@@ -116,4 +121,5 @@
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
 </html>

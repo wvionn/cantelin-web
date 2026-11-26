@@ -8,16 +8,13 @@
   const selectedVariantsByProduct = {};
 
   /**
-   * Buka link DM langsung (dipakai oleh "Chat kami via DM ya!", "Order Now", dll.)
+   * Buka link DM langsung di tab baru tanpa mengubah tab asli
    */
   window.openDmLink = function openDmLink() {
     const url = (typeof CANTELIN_CONFIG !== "undefined" && CANTELIN_CONFIG.dmLink)
       ? CANTELIN_CONFIG.dmLink
       : "https://ig.me/m/cantelin.id";
-    const popup = window.open(url, "_blank", "noopener,noreferrer");
-    if (!popup) {
-      window.location.href = url;
-    }
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   function findProductById(productId) {
@@ -37,13 +34,14 @@
     backdrop.setAttribute("aria-labelledby", "modal-title");
 
     backdrop.innerHTML = `
-      <div class="modal-container">
+      <div class="modal-container" id="modal-container">
         <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Tutup detail gambar">&times;</button>
         <div class="modal-image-box">
           <img id="modal-preview-img" src="" alt="" />
+          <p class="modal-zoom-caption" id="modal-zoom-caption"></p>
           <span class="modal-file-tag" id="modal-file-tag"></span>
         </div>
-        <div class="modal-details">
+        <div class="modal-details" id="modal-details">
           <div>
             <div class="modal-badge-row" id="modal-badge-row"></div>
             <h2 class="modal-title" id="modal-title"></h2>
@@ -105,10 +103,13 @@
       overrideSub = "",
       overrideDescription = "",
       showCatalogueLink = false,
+      zoomOnly = false,
       onVariantSelect = null
     } = options;
 
+    const modalContainer = backdrop.querySelector("#modal-container");
     const previewImg = backdrop.querySelector("#modal-preview-img");
+    const zoomCaption = backdrop.querySelector("#modal-zoom-caption");
     const fileTag = backdrop.querySelector("#modal-file-tag");
     const badgeRow = backdrop.querySelector("#modal-badge-row");
     const titleEl = backdrop.querySelector("#modal-title");
@@ -118,7 +119,11 @@
     const variantsGrid = backdrop.querySelector("#modal-variants-grid");
     const catLink = backdrop.querySelector("#modal-catalogue-link");
 
-    catLink.style.display = showCatalogueLink ? "inline-flex" : "none";
+    modalContainer.classList.toggle("modal-container--zoom-only", Boolean(zoomOnly));
+    catLink.style.display = showCatalogueLink && !zoomOnly ? "inline-flex" : "none";
+
+    const displayTitle = overrideTitle || (product ? product.name : "Cantelin");
+    zoomCaption.textContent = displayTitle;
 
     const priceText = overridePrice || (product ? [product.badgePrice, product.badgeSub].filter(Boolean).join(" ") : "");
     const subText = overrideSub || (product ? (product.secondaryBadge || product.subtitle) : "");
@@ -214,13 +219,12 @@
 
   function initHomePage() {
     const imgEl = document.getElementById("carousel-image");
-    const captionEl = document.getElementById("carousel-caption");
     const prevBtn = document.getElementById("carousel-prev");
     const nextBtn = document.getElementById("carousel-next");
     const dotsWrap = document.getElementById("carousel-dots");
     const triggerBtn = document.getElementById("carousel-trigger");
 
-    if (!imgEl || !captionEl || !dotsWrap || typeof HOME_SLIDES === "undefined") {
+    if (!imgEl || !dotsWrap || typeof HOME_SLIDES === "undefined") {
       return;
     }
 
@@ -231,7 +235,6 @@
       const slide = HOME_SLIDES[currentIndex];
       imgEl.src = slide.image;
       imgEl.alt = slide.title;
-      captionEl.textContent = slide.title;
 
       dotsWrap.querySelectorAll(".carousel-dot").forEach((dot, idx) => {
         const isActive = idx === currentIndex;
@@ -255,15 +258,12 @@
 
     triggerBtn.addEventListener("click", () => {
       const slide = HOME_SLIDES[currentIndex];
-      const linkedProduct = findProductById(slide.productId);
       openImageModal({
-        product: linkedProduct,
-        activeVariantId: "all",
+        product: null,
         overrideImage: slide.image,
         overrideTitle: slide.title,
-        overridePrice: slide.priceLabel,
-        overrideSub: slide.subtitle,
-        showCatalogueLink: true
+        showCatalogueLink: false,
+        zoomOnly: true
       });
     });
 
@@ -325,7 +325,6 @@
         <div class="card-corner-stars">${createCornerStarsSvg()}</div>
         <button type="button" class="product-image-btn" aria-label="Buka detail ${product.name}">
           <img src="${product.mainImage}" alt="${product.name}" />
-          <span class="product-zoom-pill">Klik Gambar 🔍</span>
         </button>
         <div class="variant-strip" aria-label="Pilih varian ${product.name}"></div>
       `;
@@ -382,29 +381,9 @@
     });
   }
 
-  /* ---------- ABOUT PAGE SHOWCASE ---------- */
-
-  function initAboutPage() {
-    const showcaseBtn = document.getElementById("about-showcase-btn");
-    if (!showcaseBtn || typeof ABOUT_SHOWCASE === "undefined") return;
-
-    showcaseBtn.addEventListener("click", () => {
-      openImageModal({
-        product: null,
-        overrideImage: ABOUT_SHOWCASE.image,
-        overrideTitle: ABOUT_SHOWCASE.title,
-        overridePrice: ABOUT_SHOWCASE.priceLabel,
-        overrideSub: ABOUT_SHOWCASE.subtitle,
-        overrideDescription: ABOUT_SHOWCASE.description,
-        showCatalogueLink: true
-      });
-    });
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     const page = document.body.dataset.page;
     if (page === "home") initHomePage();
     if (page === "catalogue") initCataloguePage();
-    if (page === "about") initAboutPage();
   });
 })();

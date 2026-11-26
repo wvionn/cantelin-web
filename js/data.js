@@ -11,6 +11,51 @@ const CANTELIN_CONFIG = {
 
 const CATALOGUE_PRODUCTS = [
   {
+    id: "paket",
+    name: "Paket",
+    subtitle: "(Cardholder + Keychain)",
+    badgePrice: "35k",
+    badgeSub: "",
+    secondaryBadge: "Paket Hemat",
+    mainImage: "assets/images/paket-main.png",
+    description:
+      "Bundle lengkap Cardholder + Carabiner warna pastel/neon + Keychain Charm Cantelin. Lebih hemat dan langsung siap gantung!",
+    variants: [
+      {
+        id: "v1",
+        shortLabel: "V1",
+        name: "Mint Teal Set",
+        color: "#66d9b9",
+        image: "assets/images/paket-v1.png",
+        description: "Paket lengkap dengan carabiner mint & charm serasi."
+      },
+      {
+        id: "v2",
+        shortLabel: "V2",
+        name: "Hot Pink Set",
+        color: "#ec407a",
+        image: "assets/images/paket-v2.png",
+        description: "Paket lengkap dengan carabiner hot pink & charm ikonik."
+      },
+      {
+        id: "v3",
+        shortLabel: "V3",
+        name: "Sky Blue Set",
+        color: "#4facfe",
+        image: "assets/images/paket-v3.png",
+        description: "Paket lengkap dengan carabiner sky blue & charm gemas."
+      },
+      {
+        id: "v4",
+        shortLabel: "V4",
+        name: "Coral Rose Set",
+        color: "#ff765c",
+        image: "assets/images/paket-v4.png",
+        description: "Paket lengkap dengan carabiner coral rose & charm manis."
+      }
+    ]
+  },
+  {
     id: "cardholder",
     name: "Cardholder",
     subtitle: "(Tanpa Keychain)",
@@ -166,51 +211,6 @@ const CATALOGUE_PRODUCTS = [
       }
     ]
   },
-  {
-    id: "paket",
-    name: "Paket",
-    subtitle: "(Cardholder + Keychain)",
-    badgePrice: "35k",
-    badgeSub: "",
-    secondaryBadge: "Paket Hemat",
-    mainImage: "assets/images/paket-main.png",
-    description:
-      "Bundle lengkap Cardholder + Carabiner warna pastel/neon + Keychain Charm Cantelin. Lebih hemat dan langsung siap gantung!",
-    variants: [
-      {
-        id: "v1",
-        shortLabel: "V1",
-        name: "Mint Teal Set",
-        color: "#66d9b9",
-        image: "assets/images/paket-v1.png",
-        description: "Paket lengkap dengan carabiner mint & charm serasi."
-      },
-      {
-        id: "v2",
-        shortLabel: "V2",
-        name: "Hot Pink Set",
-        color: "#ec407a",
-        image: "assets/images/paket-v2.png",
-        description: "Paket lengkap dengan carabiner hot pink & charm ikonik."
-      },
-      {
-        id: "v3",
-        shortLabel: "V3",
-        name: "Sky Blue Set",
-        color: "#4facfe",
-        image: "assets/images/paket-v3.png",
-        description: "Paket lengkap dengan carabiner sky blue & charm gemas."
-      },
-      {
-        id: "v4",
-        shortLabel: "V4",
-        name: "Coral Rose Set",
-        color: "#ff765c",
-        image: "assets/images/paket-v4.png",
-        description: "Paket lengkap dengan carabiner coral rose & charm manis."
-      }
-    ]
-  }
 ];
 
 const HOME_SLIDES = [
