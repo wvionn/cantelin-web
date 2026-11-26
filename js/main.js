@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="modal-actions" id="modal-actions">
-            <button type="button" class="modal-action-primary" onclick="openDmLink()">
+            <button type="button" class="modal-action-primary" id="modal-dm-btn">
               Chat kami via DM ya! 💬
             </button>
             <a href="catalogue.html" class="modal-action-secondary" id="modal-catalogue-link">
@@ -64,6 +64,11 @@
     `;
 
     document.body.appendChild(backdrop);
+
+    const dmBtn = backdrop.querySelector("#modal-dm-btn");
+    if (dmBtn) {
+      dmBtn.addEventListener("click", window.openDmLink);
+    }
 
     const closeBtn = backdrop.querySelector("#modal-close-btn");
     closeBtn.addEventListener("click", closeImageModal);
@@ -371,7 +376,15 @@
     });
   }
 
+  function bindDmLinks() {
+    if (typeof document.querySelectorAll !== "function") return;
+    document.querySelectorAll("[data-dm-link]").forEach((el) => {
+      el.addEventListener("click", window.openDmLink);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
+    bindDmLinks();
     const page = document.body.dataset.page;
     if (page === "home") initHomePage();
     if (page === "catalogue") initCataloguePage();
