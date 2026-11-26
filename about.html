@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cantelin — About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="about">
+  <!-- Decorative Floating Stars -->
+  <div class="bg-decor" aria-hidden="true">
+    <svg class="decor-star decor-star--tl" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="starGradAbtA" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#ffe047"/>
+          <stop offset="55%" stop-color="#ff64a8"/>
+          <stop offset="100%" stop-color="#a586ff"/>
+        </linearGradient>
+        <linearGradient id="starGradAbtB" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#a586ff"/>
+          <stop offset="100%" stop-color="#ff79b0"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#starGradAbtA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+    <svg class="decor-star decor-star--tl-sm" viewBox="0 0 100 100">
+      <path fill="url(#starGradAbtB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+    <svg class="decor-star decor-star--tr-sm" viewBox="0 0 100 100">
+      <path fill="url(#starGradAbtA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+    <svg class="decor-star decor-star--tr" viewBox="0 0 100 100">
+      <path fill="url(#starGradAbtB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+    <svg class="decor-star decor-star--mr" viewBox="0 0 100 100">
+      <path fill="url(#starGradAbtA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+    <svg class="decor-star decor-star--bl" viewBox="0 0 100 100">
+      <path fill="url(#starGradAbtA)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+    <svg class="decor-star decor-star--bl-sm" viewBox="0 0 100 100">
+      <path fill="url(#starGradAbtB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+    <svg class="decor-star decor-star--br" viewBox="0 0 100 100">
+      <path fill="url(#starGradAbtB)" d="M50 6l12 26 28 4-20 19 5 28-25-13-25 13 5-28-20-19 28-4z"/>
+    </svg>
+  </div>
+
+  <div class="page-shell">
+    <header class="site-header">
+      <a href="index.html" class="brand-logo" aria-label="Cantelin Home">
+        <svg class="brand-star" viewBox="0 0 64 64" aria-hidden="true">
+          <path fill="#f03d7e" d="M32 5l8.2 16.8L59 24.5 45.4 37.7l3.2 18.8L32 47.6l-16.6 8.9 3.2-18.8L5 24.5l18.8-2.7z"/>
+        </svg>
+        <span class="brand-wordmark">Cantelin</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Navigasi Utama">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="catalogue.html" class="nav-link">Catalogue</a>
+        <a href="about.html" class="nav-link is-active" aria-current="page">About</a>
+      </nav>
+    </header>
+
+    <main class="about-main">
+      <h1 class="about-title">Apasih Cantelin Ntuhh? 🤔✨</h1>
+      <p class="about-intro">
+        CANTELIN itu brand yang nyediain produk keychain Card Holder dengan desain ilustrasi yang pastinya kece banget buat kalian bawa kemana-mana
+      </p>
+
+      <section class="about-columns" aria-label="Keunggulan Cantelin">
+        <div class="about-benefits">
+          <h2 class="about-subheading">
+            Apasih Keunggulan Beli<br />
+            Produk Kite?? 👀💖
+          </h2>
+
+          <ul class="benefit-list">
+            <li class="benefit-pill benefit-pill--lilac">(+) Bikin keren kartu prabayar kamu 💳</li>
+            <li class="benefit-pill benefit-pill--peach">(+) Desain ilustrasi original 🎨</li>
+            <li class="benefit-pill benefit-pill--mint">(+) Bundle Charm &amp; Carabiner 🔑</li>
+            <li class="benefit-pill benefit-pill--sky">(+) Packaging estetik siap hadiah 🎁</li>
+            <li class="benefit-pill benefit-pill--rose">(+) Praktis dibawa kemana-mana 🎒</li>
+          </ul>
+        </div>
+
+        <div class="about-showcase-wrap">
+          <button type="button" class="about-showcase-frame" id="about-showcase-btn" aria-label="Klik gambar untuk memperbesar">
+            <div class="about-showcase-inner">
+              <img src="assets/images/about-showcase.png" alt="Koleksi Produk &amp; Packaging Cantelin" />
+              <span class="click-hint">Klik gambar untuk perbesar 🔍</span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <p class="about-cta-text">
+        Cocok begete kan buat diorder?? Sung aja cek katalognya! 👇
+      </p>
+
+      <a href="catalogue.html" class="cta-pill">
+        Cek Katalognya! 👉
+      </a>
+
+      <p class="dm-prompt">
+        Mau langsung tanya atau order?
+        <button type="button" class="dm-inline-link" onclick="openDmLink()">
+          Chat kami via DM ya! 💬
+        </button>
+      </p>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
