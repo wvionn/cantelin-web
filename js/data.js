@@ -20,7 +20,10 @@ const CATALOGUE_PRODUCTS = [
     mainImage: "assets/images/paket-main.png",
     description:
       "Bundle lengkap Cardholder + Carabiner warna pastel/neon + Keychain Charm Cantelin. Lebih hemat dan langsung siap gantung!",
-    variants: []
+    variants: [
+      { id: "v1", image: "assets/images/paket-v1.png" },
+      { id: "v2", image: "assets/images/paket-v2.png" }
+    ]
   },
   {
     id: "card holder",
@@ -97,15 +100,15 @@ const CATALOGUE_PRODUCTS = [
       { id: "v1", shortLabel: "V1", name: "zzhang!", color: "#f48fb1", image: "assets/images/keychain-v1.png", description: "Keychain acrylic varian zzhang!" },
       { id: "v2", shortLabel: "V2", name: "yihaa!", color: "#ec407a", image: "assets/images/keychain-v2.png", description: "Keychain acrylic varian yihaa!" },
       { id: "v3", shortLabel: "V3", name: "helow!", color: "#66d9b9", image: "assets/images/keychain-v3.png", description: "Keychain acrylic varian helow!" },
-      { id: "v4", shortLabel: "V4", name: "woops!", color: "#4facfe", image: "assets/images/keychain-v1.png", description: "Keychain acrylic varian woops!" },
-      { id: "v5", shortLabel: "V5", name: "ur da real art", color: "#ffd54f", image: "assets/images/keychain-v2.png", description: "Keychain acrylic varian ur da real art." },
-      { id: "v6", shortLabel: "V6", name: "bunny", color: "#ff765c", image: "assets/images/keychain-v3.png", description: "Keychain acrylic varian bunny." },
-      { id: "v7", shortLabel: "V7", name: "apple", color: "#ef4444", image: "assets/images/keychain-v1.png", description: "Keychain acrylic varian apple." },
-      { id: "v8", shortLabel: "V8", name: "fish", color: "#4facfe", image: "assets/images/keychain-v2.png", description: "Keychain acrylic varian fish." },
-      { id: "v9", shortLabel: "V9", name: "orang keren", color: "#26242c", image: "assets/images/keychain-v3.png", description: "Keychain acrylic varian orang keren." },
-      { id: "v10", shortLabel: "V10", name: "baby bangs", color: "#f7a8c4", image: "assets/images/keychain-v1.png", description: "Keychain acrylic varian baby bangs." },
-      { id: "v11", shortLabel: "V11", name: "blue monster", color: "#4169e1", image: "assets/images/keychain-v2.png", description: "Keychain acrylic varian blue monster." },
-      { id: "v12", shortLabel: "V12", name: "tomato", color: "#ff4d4d", image: "assets/images/keychain-v3.png", description: "Keychain acrylic varian tomato." }
+      { id: "v4", shortLabel: "V4", name: "woops!", color: "#4facfe", image: "assets/images/keychain-v4.png", description: "Keychain acrylic varian woops!" },
+      { id: "v5", shortLabel: "V5", name: "ur da real art", color: "#ffd54f", image: "assets/images/keychain-v5.png", description: "Keychain acrylic varian ur da real art." },
+      { id: "v6", shortLabel: "V6", name: "bunny", color: "#ff765c", image: "assets/images/keychain-v6.png", description: "Keychain acrylic varian bunny." },
+      { id: "v7", shortLabel: "V7", name: "apple", color: "#ef4444", image: "assets/images/keychain-v7.png", description: "Keychain acrylic varian apple." },
+      { id: "v8", shortLabel: "V8", name: "fish", color: "#4facfe", image: "assets/images/keychain-v8.png", description: "Keychain acrylic varian fish." },
+      { id: "v9", shortLabel: "V9", name: "orang keren", color: "#26242c", image: "assets/images/keychain-v9.png", description: "Keychain acrylic varian orang keren." },
+      { id: "v10", shortLabel: "V10", name: "baby bangs", color: "#f7a8c4", image: "assets/images/keychain-v10.png", description: "Keychain acrylic varian baby bangs." },
+      { id: "v11", shortLabel: "V11", name: "blue monster", color: "#4169e1", image: "assets/images/keychain-v11.png", description: "Keychain acrylic varian blue monster." },
+      { id: "v12", shortLabel: "V12", name: "tomato", color: "#ff4d4d", image: "assets/images/keychain-v12.png", description: "Keychain acrylic varian tomato." }
     ]
   },
   {
@@ -138,7 +141,10 @@ const CATALOGUE_PRODUCTS = [
     mainImage: "assets/images/stiker-main.png",
     description:
       "Stiker die-cut karakter & tipografi seru Cantelin. Cocok ditempel di casing HP, laptop, tumbler, dan jurnal.",
-    variants: []
+    variants: [
+      { id: "v1", image: "assets/images/stiker-v1.png" },
+      { id: "v2", image: "assets/images/stiker-v2.png" },
+    ]
   },
 ];
 
