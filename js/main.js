@@ -13,7 +13,7 @@
   window.openDmLink = function openDmLink() {
     const url = (typeof CANTELIN_CONFIG !== "undefined" && CANTELIN_CONFIG.dmLink)
       ? CANTELIN_CONFIG.dmLink
-      : "https://ig.me/m/cantelin.id";
+      : "https://www.instagram.com/cantel__in/";
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
@@ -35,7 +35,11 @@
 
     backdrop.innerHTML = `
       <div class="modal-container" id="modal-container">
-        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Tutup detail gambar">&times;</button>
+        <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Tutup detail gambar">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 3L13 13M13 3L3 13" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
+          </svg>
+        </button>
         <div class="modal-image-box">
           <img id="modal-preview-img" src="" alt="" />
           <p class="modal-zoom-caption" id="modal-zoom-caption"></p>
@@ -47,7 +51,7 @@
             <p class="modal-variant-active" id="modal-variant-active"></p>
             <p class="modal-desc" id="modal-desc"></p>
             <div id="modal-variants-section">
-              <p class="modal-variants-heading">Pilih Varian:</p>
+              <p class="modal-variants-heading" id="modal-variants-heading">Pilih Varian:</p>
               <div class="modal-variants-grid" id="modal-variants-grid"></div>
             </div>
           </div>
@@ -119,6 +123,7 @@
     const variantActiveEl = backdrop.querySelector("#modal-variant-active");
     const descEl = backdrop.querySelector("#modal-desc");
     const variantsSection = backdrop.querySelector("#modal-variants-section");
+    const variantsHeading = backdrop.querySelector("#modal-variants-heading");
     const variantsGrid = backdrop.querySelector("#modal-variants-grid");
     const catLink = backdrop.querySelector("#modal-catalogue-link");
 
@@ -129,7 +134,10 @@
     zoomCaption.textContent = displayTitle;
 
     const priceText = overridePrice || (product ? [product.badgePrice, product.badgeSub].filter(Boolean).join(" ") : "");
-    const subText = overrideSub || (product ? (product.secondaryBadge || product.subtitle) : "");
+    const secondaryText = overrideSub || (product ? product.secondaryBadge : "");
+    const subtitleText = !overrideSub && product && product.subtitle && product.subtitle !== secondaryText
+      ? product.subtitle
+      : "";
 
     badgeRow.innerHTML = "";
     if (priceText) {
@@ -138,16 +146,29 @@
       pricePill.textContent = priceText;
       badgeRow.appendChild(pricePill);
     }
-    if (subText) {
+    if (secondaryText) {
       const subPill = document.createElement("span");
       subPill.className = "modal-sub-pill";
-      subPill.textContent = subText;
+      subPill.textContent = secondaryText;
       badgeRow.appendChild(subPill);
+    }
+    if (subtitleText) {
+      const itemPill = document.createElement("span");
+      itemPill.className = "modal-sub-pill";
+      itemPill.textContent = subtitleText;
+      badgeRow.appendChild(itemPill);
     }
 
     titleEl.textContent = overrideTitle || (product ? product.name : "Cantelin");
 
-    function applyModalSelection(variantId) {
+    const isImageOnlyVariants = Boolean(
+      product &&
+      Array.isArray(product.variants) &&
+      product.variants.length > 0 &&
+      product.variants.every((v) => !v.name && !v.shortLabel)
+    );
+
+    function applyModalSelection(variantId, notifyCard = true) {
       let imgSrc = overrideImage || (product ? product.mainImage : "");
       let variantLabel = "Varian: Semua / Overview";
       let descText = overrideDescription || (product ? product.description : "");
@@ -156,7 +177,8 @@
         const chosen = product.variants.find((v) => v.id === variantId);
         if (chosen) {
           imgSrc = chosen.image;
-          variantLabel = `Varian Aktif: ${chosen.shortLabel} — ${chosen.name}`;
+          const chosenLabel = [chosen.shortLabel, chosen.name].filter(Boolean).join(" — ");
+          variantLabel = chosenLabel ? `Varian Aktif: ${chosenLabel}` : "";
           descText = chosen.description || product.description;
         }
       } else if (!product) {
@@ -164,7 +186,8 @@
       }
 
       previewImg.src = imgSrc;
-      previewImg.alt = `${titleEl.textContent} - ${variantLabel}`;
+      previewImg.alt = variantLabel ? `${titleEl.textContent} - ${variantLabel}` : titleEl.textContent;
+      variantActiveEl.style.display = isImageOnlyVariants || !variantLabel ? "none" : "block";
       variantActiveEl.textContent = variantLabel;
       descEl.textContent = descText;
 
@@ -172,7 +195,7 @@
         btn.classList.toggle("is-active", btn.dataset.variantId === variantId);
       });
 
-      if (typeof onVariantSelect === "function") {
+      if (notifyCard && typeof onVariantSelect === "function") {
         onVariantSelect(variantId);
       }
     }
@@ -180,37 +203,62 @@
     variantsGrid.innerHTML = "";
     if (product && Array.isArray(product.variants) && product.variants.length > 0) {
       variantsSection.style.display = "block";
+      if (variantsHeading) {
+        variantsHeading.style.display = isImageOnlyVariants ? "none" : "block";
+      }
 
-      const allOptionImage = overrideImage || product.mainImage;
-      const allBtn = document.createElement("button");
-      allBtn.type = "button";
-      allBtn.className = "modal-variant-btn";
-      allBtn.dataset.variantId = "all";
-      allBtn.innerHTML = `
-        <img class="modal-variant-thumb" src="${allOptionImage}" alt="Overview" />
-        <span>Semua</span>
-      `;
-      allBtn.addEventListener("click", () => applyModalSelection("all"));
-      variantsGrid.appendChild(allBtn);
+      if (isImageOnlyVariants) {
+        product.variants.forEach((variant, idx) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "modal-variant-btn modal-variant-btn--image-only";
+          btn.dataset.variantId = variant.id;
+          btn.setAttribute("aria-label", `${displayTitle} gambar ${idx + 1}`);
+          btn.innerHTML = `
+            <img class="modal-variant-thumb modal-variant-thumb--lg" src="${variant.image}" alt="${displayTitle} ${idx + 1}" />
+          `;
+          btn.addEventListener("click", () => applyModalSelection(variant.id, true));
+          variantsGrid.appendChild(btn);
+        });
 
-      product.variants.forEach((variant) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "modal-variant-btn";
-        btn.dataset.variantId = variant.id;
-        btn.innerHTML = `
-          <img class="modal-variant-thumb" src="${variant.image}" alt="${variant.name}" />
-          <span class="variant-dot" style="background:${variant.color}"></span>
-          <span>${variant.shortLabel}: ${variant.name}</span>
+        const initialId = activeVariantId && activeVariantId !== "all"
+          ? activeVariantId
+          : product.variants[0].id;
+        applyModalSelection(initialId, false);
+      } else {
+        const allOptionImage = overrideImage || product.mainImage;
+        const allBtn = document.createElement("button");
+        allBtn.type = "button";
+        allBtn.className = "modal-variant-btn";
+        allBtn.dataset.variantId = "all";
+        allBtn.innerHTML = `
+          <img class="modal-variant-thumb" src="${allOptionImage}" alt="Overview" />
+          <span>Semua</span>
         `;
-        btn.addEventListener("click", () => applyModalSelection(variant.id));
-        variantsGrid.appendChild(btn);
-      });
+        allBtn.addEventListener("click", () => applyModalSelection("all", true));
+        variantsGrid.appendChild(allBtn);
 
-      applyModalSelection(activeVariantId);
+        product.variants.forEach((variant) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "modal-variant-btn";
+          btn.dataset.variantId = variant.id;
+          const textLabel = [variant.shortLabel, variant.name].filter(Boolean).join(": ") || variant.id;
+          const dotHtml = variant.color ? `<span class="variant-dot" style="background:${variant.color}"></span>` : "";
+          btn.innerHTML = `
+            <img class="modal-variant-thumb" src="${variant.image}" alt="${textLabel}" />
+            ${dotHtml}
+            <span>${textLabel}</span>
+          `;
+          btn.addEventListener("click", () => applyModalSelection(variant.id, true));
+          variantsGrid.appendChild(btn);
+        });
+
+        applyModalSelection(activeVariantId, false);
+      }
     } else {
       variantsSection.style.display = "none";
-      applyModalSelection("all");
+      applyModalSelection("all", false);
     }
 
     backdrop.classList.add("is-open");
@@ -306,6 +354,12 @@
       if (product.secondaryBadge) {
         card.classList.add("product-card--highlight");
       }
+      if (!product.subtitle) {
+        card.classList.add("product-card--no-sub");
+      }
+      if (product.variants.length === 0) {
+        card.classList.add("product-card--no-variants");
+      }
 
       const labelHtml = `
         <div class="product-label-box">
@@ -338,13 +392,13 @@
           <img src="${product.mainImage}" alt="${product.name}" />
         </button>
         ${labelHtml}
-        <div class="card-variant-action">
-          ${product.variants.length > 0 ? `
+        ${product.variants.length > 0 ? `
+          <div class="card-variant-action">
             <button type="button" class="view-variants-btn">
               Lihat Varian (${product.variants.length}) 🔍
             </button>
-          ` : ""}
-        </div>
+          </div>
+        ` : ""}
       `;
 
       const imgBtn = card.querySelector(".product-image-btn");
