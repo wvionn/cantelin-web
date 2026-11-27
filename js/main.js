@@ -13,7 +13,7 @@
   window.openDmLink = function openDmLink() {
     const url = (typeof CANTELIN_CONFIG !== "undefined" && CANTELIN_CONFIG.dmLink)
       ? CANTELIN_CONFIG.dmLink
-      : "https://ig.me/m/cantelin.id";
+      : "https://www.instagram.com/cantel__in/";
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
