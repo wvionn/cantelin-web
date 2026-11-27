@@ -1028,6 +1028,10 @@ a {
   border-radius: 999px;
 }
 
+.modal-badge-row[data-product-id="Bundle Lengkap"] .modal-price-pill {
+  background: #4169e1;
+}
+
 .modal-sub-pill {
   background: var(--pink-soft);
   color: var(--pink-dark);

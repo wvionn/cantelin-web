@@ -140,19 +140,33 @@
       : "";
 
     badgeRow.innerHTML = "";
-    if (priceText) {
+    badgeRow.dataset.productId = product ? product.id : "";
+
+    function appendPricePill() {
+      if (!priceText) return;
       const pricePill = document.createElement("span");
       pricePill.className = "modal-price-pill";
       pricePill.textContent = priceText;
       badgeRow.appendChild(pricePill);
     }
-    if (secondaryText) {
+
+    function appendSecondaryPill() {
+      if (!secondaryText) return;
       const subPill = document.createElement("span");
       subPill.className = "modal-sub-pill";
       subPill.textContent = secondaryText;
       badgeRow.appendChild(subPill);
     }
-    if (subtitleText) {
+
+    if (product && product.secondaryBadgeFirst) {
+      appendSecondaryPill();
+      appendPricePill();
+    } else {
+      appendPricePill();
+      appendSecondaryPill();
+    }
+
+    if (subtitleText && !(product && product.hideModalSubtitleBadge)) {
       const itemPill = document.createElement("span");
       itemPill.className = "modal-sub-pill";
       itemPill.textContent = subtitleText;
