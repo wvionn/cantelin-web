@@ -23,8 +23,8 @@ const CATALOGUE_PRODUCTS = [
     variants: []
   },
   {
-    id: "card holder",
-    name: "Card holder",
+    id: "card holder cantelin",
+    name: "Card holder Cantelin",
     subtitle: "Card holder + Carabiner only",
     badgePrice: "30k",
     badgeSub: "",
